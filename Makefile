@@ -1,5 +1,5 @@
 REPO_URL := https://github.com/OyePuru/grpc-proto
-BRANCH := main
+BRANCH := master
 PROTO_FOLDER := proto
 GEN_FOLDER := gen
 SERVICE_YAML := service.yaml

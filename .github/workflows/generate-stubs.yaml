@@ -40,6 +40,6 @@ jobs:
 
     - name: Generate stubs
       run: |
-        make generate-stubs-client generate-stubs-server
+        make generate-stubs-client generate-stubs
 
     - uses: stefanzweifel/git-auto-commit-action@v5

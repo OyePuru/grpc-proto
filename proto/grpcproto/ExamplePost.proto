@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package grpcproto;
+
+option go_package = "github.com/amanjain-cb/grpcproto/gen/go/grpcproto";
+
+service ExamplePostService {
+  rpc ExamplePostHandler (ExamplePostRequest) returns (ExamplePostResponse) {}
+}
+
+message ExamplePostRequest {
+  string name = 1;
+}
+
+message ExamplePostResponse {
+  string message = 1;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package grpcproto;
+
+option go_package = "github.com/amanjain-cb/grpcproto/gen/go/grpcproto";
+
+service ExampleGetService {
+  rpc ExampleGetHandler (ExampleGetRequest) returns (ExampleGetResponse) {}
+}
+
+message ExampleGetRequest {}
+
+message ExampleGetResponse {
+  string message = 1;
+}

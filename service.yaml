@@ -3,8 +3,8 @@ config_version: 3
 
 http:
   rules:
-    - selector: grpcproto.Greeter.SayHello
-      post: /ping
+    - selector: grpcproto.ExampleGetService.ExampleGetHandler
+      get: /example/get
+    - selector: grpcproto.ExamplePostService.ExamplePostHandler
+      post: /example/post
       body: "*"
-    - selector: grpcproto.Greeter2.SayHello2
-      get: /pong

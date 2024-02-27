@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package grpcproto;
 
-option go_package = "github.com/amanjain-cb/grpcproto/gen/go/grpcproto";
+option go_package = "github.com/CrossBorder-Co/sales-marker-proto/gen/go/grpcproto";
 
 service ExamplePostService {
   rpc ExamplePostHandler (ExamplePostRequest) returns (ExamplePostResponse) {}

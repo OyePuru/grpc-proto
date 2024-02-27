@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package grpcproto;
+package example;
 
-option go_package = "github.com/CrossBorder-Co/sales-marker-proto/gen/go/grpcproto";
+option go_package = "github.com/CrossBorder-Co/sales-marker-proto/gen/go/example";
 
 service ExamplePostService {
   rpc ExamplePostHandler (ExamplePostRequest) returns (ExamplePostResponse) {}

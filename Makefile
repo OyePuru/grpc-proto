@@ -4,16 +4,6 @@ PROTO_FOLDER := proto
 GEN_FOLDER := gen
 SERVICE_YAML := service.yaml
 
-clean:
-	rm -rf proto gen 
-
-pull-views:
-	git clone --branch $(BRANCH) --single-branch --depth 1 $(REPO_URL) tmp-repo
-	cp -r tmp-repo/$(PROTO_FOLDER) .
-	cp -r tmp-repo/$(GEN_FOLDER) .
-	rm -rf tmp-repo
-
-
 generate-stubs-server:
 	rm -rf gen/go/server
 	mkdir -p gen/go/server

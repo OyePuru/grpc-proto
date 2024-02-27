@@ -3,8 +3,8 @@ config_version: 3
 
 http:
   rules:
-    - selector: helloworld.Greeter.SayHello
+    - selector: grpcproto.Greeter.SayHello
       post: /ping
       body: "*"
-    - selector: helloworld.Greeter2.SayHello2
+    - selector: grpcproto.Greeter2.SayHello2
       get: /pong

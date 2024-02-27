@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package helloworld;
+package grpcproto;
 
-option go_package = "github.com/amanjain-cb/helloworld/gen/go/helloworld";
+option go_package = "github.com/amanjain-cb/grpcproto/gen/go/grpcproto";
 
 service Greeter2 {
   rpc SayHello2 (HelloRequest2) returns (HelloReply2) {}

@@ -1,0 +1,12 @@
+type: google.api.Service
+config_version: 3
+
+http:
+  rules:
+    - selector: person.PersonService.PersonGetHandler
+      get: /person
+    - selector: person.PersonService.PersonCreateHandler
+      post: /person
+      body: "*"
+    - selector: person.PersonService.PersonGetByIdHandler
+      get: /person/{personId}

@@ -4,12 +4,21 @@ package example;
 
 option go_package = "github.com/CrossBorder-Co/sales-marker-proto/gen/go/example";
 
-service ExampleGetService {
+service ExampleService {
   rpc ExampleGetHandler (ExampleGetRequest) returns (ExampleGetResponse) {}
+  rpc ExamplePostHandler (ExamplePostRequest) returns (ExamplePostResponse) {}
 }
 
 message ExampleGetRequest {}
 
 message ExampleGetResponse {
+  string message = 1;
+}
+
+message ExamplePostRequest {
+  string name = 1;
+}
+
+message ExamplePostResponse {
   string message = 1;
 }

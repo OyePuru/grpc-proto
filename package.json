@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "grpc-tools": "^1.12.4",
+    "ts-protoc-gen": "^0.15.0"
+  }
+}

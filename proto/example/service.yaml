@@ -3,8 +3,8 @@ config_version: 3
 
 http:
   rules:
-    - selector: example.ExampleGetService.ExampleGetHandler
+    - selector: example.ExampleService.ExampleGetHandler
       get: /example/get
-    - selector: example.ExamplePostService.ExamplePostHandler
+    - selector: example.ExampleService.ExamplePostHandler
       post: /example/post
       body: "*"

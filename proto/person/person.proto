@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package person;
+
+option go_package = "github.com/CrossBorder-Co/sales-marker-proto/gen/go/person";
+
+service PersonService {
+  rpc PersonGetHandler (PersonData) returns (PersonWithId) {}
+  rpc PersonCreateHandler (PersonData) returns (PersonWithId) {}
+  rpc PersonGetByIdHandler (PersonId) returns (PersonWithId) {}
+}
+
+message PersonWithId {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+}
+
+message PersonData {
+  string name = 1;
+  int32 age = 2;
+}
+
+message PersonId {
+  int32 personId = 1;
+}

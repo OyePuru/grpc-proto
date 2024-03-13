@@ -60,41 +60,41 @@ jobs:
         make generate-stubs-python
     
 
-    # - name: Push Golang Generations
-    #   uses: cpina/github-action-push-to-another-repository@target-branch
-    #   env:
-    #     API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-    #   with:
-    #     source-directory: ./gen/go
-    #     destination-github-username: 'CrossBorder-Co'
-    #     destination-repository-name: 'sales-marker-gen-go'
-    #     user-email: 'aman.jain@cross-border.jp'
-    #     commit-message: Generate Golang Code
-    #     target-branch: main
-    #     target-directory: gen/go
+    - name: Push Golang Generations
+      uses: cpina/github-action-push-to-another-repository@target-branch
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: ./gen/go
+        destination-github-username: 'oyepuru'
+        destination-repository-name: 'gen-go'
+        user-email: 'mandalpurushottam66@gmail.com'
+        commit-message: Generate Golang Code
+        target-branch: main
+        target-directory: gen/go
 
-    # - name: Push Typescript Generations
-    #   uses: cpina/github-action-push-to-another-repository@target-branch
-    #   env:
-    #     API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-    #   with:
-    #     source-directory: ./gen/ts
-    #     destination-github-username: 'CrossBorder-Co'
-    #     destination-repository-name: 'sales-marker-gen-ts'
-    #     user-email: 'aman.jain@cross-border.jp'
-    #     commit-message: Generated Typescript Code
-    #     target-branch: main
-    #     target-directory: gen/ts
+    - name: Push Typescript Generations
+      uses: cpina/github-action-push-to-another-repository@target-branch
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: ./gen/ts
+        destination-github-username: 'oyepuru'
+        destination-repository-name: 'gen-ts'
+        user-email: 'mandalpurushottam66@gmail.com'
+        commit-message: Generated Typescript Code
+        target-branch: main
+        target-directory: gen/ts
 
-    # - name: Push Python Generations
-    #   uses: cpina/github-action-push-to-another-repository@target-branch
-    #   env:
-    #     API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-    #   with:
-    #     source-directory: ./gen/python
-    #     destination-github-username: 'CrossBorder-Co'
-    #     destination-repository-name: 'sales-marker-gen-python'
-    #     user-email: 'aman.jain@cross-border.jp'
-    #     commit-message: Generate Python Code
-    #     target-branch: main
-    #     target-directory: gen/python
+    - name: Push Python Generations
+      uses: cpina/github-action-push-to-another-repository@target-branch
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: ./gen/python
+        destination-github-username: 'oyepuru'
+        destination-repository-name: 'gen-python'
+        user-email: 'mandalpurushottam66@gmail.com'
+        commit-message: Generate Python Code
+        target-branch: main
+        target-directory: gen/python

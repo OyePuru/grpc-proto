@@ -41,12 +41,23 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '20'
+
+    - name: Generate package.json
+      run: |
+        cd $GITHUB_WORKSPACE
+        npm init -y
 
     - name: Install Node dependencies
       run: |
         npm install grpc-tools
         npm install ts-protoc-gen
+
+    - name: Move npm files to gen/ts
+      run: |
+        cd $GITHUB_WORKSPACE
+        mv package.json gen/ts/
+        mv package-lock.json gen/ts/
 
     - name: Install Python dependencies
       run: |
@@ -61,14 +72,6 @@ jobs:
         make generate-stubs-ts
         make generate-stubs-python
 
-    - name: Move npm files to gen/ts
-      run: |
-        ls
-        cd $GITHUB_WORKSPACE
-        ls
-        echo "blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah"
-        mv package.json gen/ts/
-        mv package-lock.json gen/ts/      
 
     - name: Push Golang Generations
       uses: cpina/github-action-push-to-another-repository@target-branch

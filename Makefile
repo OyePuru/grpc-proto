@@ -22,7 +22,6 @@ generate-stubs-go:
 	done
 	@echo "Stubs generation completed."
 
-
 generate-stubs-ts:
 	@echo "Cleaning up..."
 	rm -rf gen/ts
@@ -33,20 +32,16 @@ generate-stubs-ts:
 		basefile=$$(basename $$file .proto); \
 		dir=$$(dirname $$file); \
 		yaml_file=$$dir/service.yaml; \
-		echo "Processing $$file"; \
-		mkdir -p gen/ts/$$dir; \
+		echo "Processing $$file $$dir"; \
+		mkdir -p gen/ts/proto/$$dir; \
 		PROTOC_GEN_TS_PATH="./node_modules/.bin/protoc-gen-ts"; \
 		PROTOC_GEN_GRPC_PATH="./node_modules/.bin/grpc_tools_node_protoc_plugin"; \
-		OUT_DIR="./gen/ts"; \
 		protoc \
 		    --plugin="protoc-gen-ts=$$PROTOC_GEN_TS_PATH" \
 		    --plugin=protoc-gen-grpc=$$PROTOC_GEN_GRPC_PATH \
-		    --js_out="import_style=commonjs,binary:$$OUT_DIR/$$dir" \
-		    --ts_out="service=grpc-node:$$OUT_DIR/$$dir" \
-		    --grpc_out="$$OUT_DIR/$$dir" \
-		    --grpc-gateway_out="$$OUT_DIR/$$dir" \
-		    --grpc-gateway_opt="paths=source_relative" \
-		    --grpc-gateway_opt="grpc_api_configuration=$$yaml_file" \
+		    --js_out="import_style=commonjs,binary:gen/ts" \
+		    --ts_out="service=grpc-node:gen/ts" \
+		    --grpc_out="gen/ts" \
 		    $$file; \
 	done
 	@echo "Stubs generation completed."

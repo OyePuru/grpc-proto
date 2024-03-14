@@ -63,7 +63,10 @@ jobs:
 
     - name: Move npm files to gen/ts
       run: |
+        ls
         cd $GITHUB_WORKSPACE
+        ls
+        echo "blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah"
         mv package.json gen/ts/
         mv package-lock.json gen/ts/      
 

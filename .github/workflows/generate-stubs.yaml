@@ -45,7 +45,6 @@ jobs:
 
     - name: Generate package.json
       run: |
-        cd $GITHUB_WORKSPACE
         npm init -y
 
     - name: Install Node dependencies
@@ -55,7 +54,8 @@ jobs:
 
     - name: Move npm files to gen/ts
       run: |
-        cd $GITHUB_WORKSPACE
+        ls
+        echo "blah blah blah blah "
         mv package.json gen/ts/
         mv package-lock.json gen/ts/
 

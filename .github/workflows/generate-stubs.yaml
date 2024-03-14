@@ -60,11 +60,12 @@ jobs:
         make generate-stubs-go
         make generate-stubs-ts
         make generate-stubs-python
-    
-    - name: Move Package Files Into gen/ts
+
+    - name: Move npm files to gen/ts
       run: |
-        mv package.json gen/ts
-        mv package-lock.json gen/ts
+        cd $GITHUB_WORKSPACE
+        mv package.json gen/ts/
+        mv package-lock.json gen/ts/      
 
     - name: Push Golang Generations
       uses: cpina/github-action-push-to-another-repository@target-branch

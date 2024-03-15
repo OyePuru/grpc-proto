@@ -28,12 +28,12 @@ generate-stubs-ts:
 	@echo "Generating stubs..."
 
 	# Loop through files in the target directory
-	find ./proto -name "*.proto" | while read -r file; do \
+	find ./proto/**/ -name "*.proto" | while read -r file; do \
 		basefile=$$(basename $$file .proto); \
 		dir=$$(dirname $$file); \
 		yaml_file=$$dir/service.yaml; \
 		echo "Processing $$file $$dir"; \
-		mkdir -p gen/ts/proto/$$dir; \
+		mkdir -p gen/ts/$$(dirname $$dir)/$$basefile; \
 		PROTOC_GEN_TS_PATH="./node_modules/.bin/protoc-gen-ts"; \
 		PROTOC_GEN_GRPC_PATH="./node_modules/.bin/grpc_tools_node_protoc_plugin"; \
 		protoc \

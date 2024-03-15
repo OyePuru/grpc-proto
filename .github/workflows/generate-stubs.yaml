@@ -43,9 +43,20 @@ jobs:
       with:
         node-version: '20'
 
+    - name: JQ for updating package.json
+      run: |
+        sudo apt install jq
+    
     - name: Generate package.json
       run: |
+        name="sales-marker-gen-ts"
         npm init -y
+        description="Sales Marker Gen Typescript"
+      
+        jq --arg name "$name" '.name = $name' package.json | \
+        jq --arg description "$description" '.description = $description' > temp.json
+
+        mv temp.json package.json
 
     - name: Install Node dependencies
       run: |

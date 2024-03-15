@@ -104,7 +104,6 @@ jobs:
         user-email: 'mandalpurushottam66@gmail.com'
         commit-message: Generated Typescript Code
         target-branch: main
-        target-directory: gen
 
     - name: Push Python Generations
       uses: cpina/github-action-push-to-another-repository@target-branch

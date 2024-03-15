@@ -76,7 +76,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source-directory: ./gen/go/protos
+        source-directory: ./gen/go/proto
         destination-github-username: 'oyepuru'
         destination-repository-name: 'gen-go'
         user-email: 'mandalpurushottam66@gmail.com'

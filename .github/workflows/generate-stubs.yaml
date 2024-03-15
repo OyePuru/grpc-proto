@@ -66,9 +66,11 @@ jobs:
 
     - name: Move npm files to gen/ts
       run: |
-        mv package.json ./gen/ts/
-        mv package-lock.json ./gen/ts/
-
+        for dir in ./gen/ts/proto/*/; do
+          cp package.json "$dir"
+          cp package-lock.json "$dir"
+        done
+  
     - name: Push Golang Generations
       uses: cpina/github-action-push-to-another-repository@target-branch
       env:

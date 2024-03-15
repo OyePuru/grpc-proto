@@ -43,21 +43,6 @@ jobs:
       with:
         node-version: '20'
 
-    - name: JQ for updating package.json
-      run: |
-        sudo apt install jq
-    
-    - name: Generate package.json
-      run: |
-        name="sales-marker-gen-ts"
-        npm init -y
-        description="Sales Marker Gen Typescript"
-      
-        jq --arg name "$name" '.name = $name' package.json | \
-        jq --arg description "$description" '.description = $description' > temp.json
-
-        mv temp.json package.json
-
     - name: Install Node dependencies
       run: |
         npm install grpc-tools
@@ -74,18 +59,13 @@ jobs:
         make generate-stubs-go
         make generate-stubs-ts
         make generate-stubs-python
-
-    - name: Move npm files to gen/ts
-      run: |
-          cp package.json ./gen/ts/proto/
-          cp package-lock.json ./gen/ts/proto/
-  
+ 
     - name: Push Golang Generations
       uses: cpina/github-action-push-to-another-repository@target-branch
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source-directory: ./gen/go/proto
+        source-directory: ./gen/go
         destination-github-username: 'oyepuru'
         destination-repository-name: 'gen-go'
         user-email: 'mandalpurushottam66@gmail.com'
@@ -98,19 +78,21 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source-directory: ./gen/ts/proto
+        source-directory: ./gen/ts
         destination-github-username: 'oyepuru'
         destination-repository-name: 'gen-ts'
         user-email: 'mandalpurushottam66@gmail.com'
         commit-message: Generated Typescript Code
         target-branch: main
+        target-directory: gen
+
 
     - name: Push Python Generations
       uses: cpina/github-action-push-to-another-repository@target-branch
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source-directory: ./gen/python/proto
+        source-directory: ./gen/python
         destination-github-username: 'oyepuru'
         destination-repository-name: 'gen-python'
         user-email: 'mandalpurushottam66@gmail.com'

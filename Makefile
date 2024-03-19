@@ -59,16 +59,11 @@ generate-stubs-python:
 		echo "Processing $$file"; \
 		mkdir -p gen/python/$$dir; \
 		OUT_DIR="./gen/python"; \
-		protoc \
-			--python_out=$$OUT_DIR/$$dir \
-			--mypy_out=$$OUT_DIR/$$dir \
-			--mypy_grpc_out=$$OUT_DIR/$$dir \
-			-I$$dir \
-			$$file; \
 		python3 -m grpc_tools.protoc \
+			-I$$dir  \
 			--python_out=$$OUT_DIR/$$dir \
+			--pyi_out=$$OUT_DIR/$$dir \
 			--grpc_python_out=$$OUT_DIR/$$dir \
-			-I$$dir \
 			$$file; \
 	done
 	@echo "Stubs generation completed."

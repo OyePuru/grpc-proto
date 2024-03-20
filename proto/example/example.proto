@@ -22,3 +22,4 @@ message ExamplePostRequest {
 message ExamplePostResponse {
   string message = 1;
 }
+

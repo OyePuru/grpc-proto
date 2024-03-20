@@ -66,4 +66,5 @@ generate-stubs-python:
 			--grpc_python_out=$$OUT_DIR/$$dir \
 			$$file; \
 	done
+	@find ./gen/python/proto -type f -name '*_pb2_grpc.py' -exec sh -c 'folder=$$(basename $${1%/*}); sed -i "s/import \(.*\)_pb2 as \(.*\)__/import gen.proto.$$folder.\1_pb2 as \2__/g" "$$1"' _ {} \;
 	@echo "Stubs generation completed."

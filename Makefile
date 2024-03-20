@@ -1,10 +1,10 @@
 generate-stubs-go:
 	@echo "Cleaning up..."
-	rm -rf gen/go
+	@rm -rf gen/go
 	@echo "Generating stubs..."
 
 	# Loop through files in the target directory
-	for file in ./proto/**/*.proto; do \
+	@for file in ./proto/**/*.proto; do \
 		basefile=$$(basename $$file .proto); \
 		dir=$$(dirname $$file); \
 		yaml_file=$$dir/service.yaml; \
@@ -24,11 +24,11 @@ generate-stubs-go:
 
 generate-stubs-ts:
 	@echo "Cleaning up..."
-	rm -rf gen/ts
+	@rm -rf gen/ts
 	@echo "Generating stubs..."
 
 	# Loop through files in the target directory
-	find ./proto/**/ -name "*.proto" | while read -r file; do \
+	@find ./proto/**/ -name "*.proto" | while read -r file; do \
 		basefile=$$(basename $$file .proto); \
 		dir=$$(dirname $$file); \
 		yaml_file=$$dir/service.yaml; \
@@ -48,11 +48,11 @@ generate-stubs-ts:
 
 generate-stubs-python:
 	@echo "Cleaning up..."
-	rm -rf gen/python
+	@rm -rf gen/python
 	@echo "Generating stubs..."
 
 	# Loop through files in the target directory
-	find ./proto -name "*.proto" | while read -r file; do \
+	@find ./proto -name "*.proto" | while read -r file; do \
 		basefile=$$(basename $$file .proto); \
 		dir=$$(dirname $$file); \
 		yaml_file=$$dir/service.yaml; \
@@ -67,4 +67,9 @@ generate-stubs-python:
 			$$file; \
 	done
 	@find ./gen/python/proto -type f -name '*_pb2_grpc.py' -exec sh -c 'folder=$$(basename $${1%/*}); sed -i "s/import \(.*\)_pb2 as \(.*\)__/import gen.proto.$$folder.\1_pb2 as \2__/g" "$$1"' _ {} \;
+	@find ./gen/python -type d -exec touch {}/__init__.py \;
+	@echo "from .proto.example import example_pb2" >> ./gen/python/__init__.py
+	@echo "from .proto.example import example_pb2_grpc" >> ./gen/python/__init__.py
+	@echo "from .proto.person import person_pb2" >> ./gen/python/__init__.py
+	@echo "from .proto.person import person_pb2_grpc" >> ./gen/python/__init__.py
 	@echo "Stubs generation completed."

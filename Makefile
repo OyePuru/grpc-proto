@@ -19,7 +19,6 @@ generate-stubs-go:
 		--grpc-gateway_opt=paths=source_relative \
 		--grpc-gateway_opt=grpc_api_configuration=$$yaml_file \
 		$$file; \
-		exit 123
 	done
 	@echo "Stubs generation completed."
 

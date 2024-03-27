@@ -54,11 +54,38 @@ jobs:
         pip install grpcio-tools
         pip install mypy-protobuf
       
-    - name: Generate stubs
+    - name: Generate stubs Golang
       run: |
         make generate-stubs-go
+
+    - name: Check Golang Stub Generation
+      if: failure()
+      uses: actions/github-script@v3
+      with:
+        script: |
+          core.setFailed('Failed in generating golang stubs')
+          
+    - name: Generate stubs Typescript
+      run: |
         make generate-stubs-ts
-        make generate-stubs-python
+
+    - name: Check Typescript Stub Generation
+      if: failure()
+      uses: actions/github-script@v3
+      with:
+        script: |
+          core.setFailed('Failed in generating typescript stubs')
+          
+    - name: Generate stubs Python
+      run: |
+        make generate-stubs-python 
+    
+    - name: Check Python Stub Generation
+      if: failure()
+      uses: actions/github-script@v3
+      with:
+        script: |
+          core.setFailed('Failed in generating python stubs')
  
     - name: Push Golang Generations
       uses: cpina/github-action-push-to-another-repository@target-branch

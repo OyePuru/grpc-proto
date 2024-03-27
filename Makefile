@@ -66,10 +66,12 @@ generate-stubs-python:
 			--grpc_python_out=$$OUT_DIR/$$dir \
 			$$file; \
 	done
+
 	@find ./gen/python/proto -type f -name '*_pb2_grpc.py' -exec sh -c 'folder=$$(basename $${1%/*}); sed -i "s/import \(.*\)_pb2 as \(.*\)__/import gen.proto.$$folder.\1_pb2 as \2__/g" "$$1"' _ {} \;
 	@find ./gen/python -type d -exec touch {}/__init__.py \;
-	@echo "from .proto.example import example_pb2" >> ./gen/python/__init__.py
-	@echo "from .proto.example import example_pb2_grpc" >> ./gen/python/__init__.py
-	@echo "from .proto.person import person_pb2" >> ./gen/python/__init__.py
-	@echo "from .proto.person import person_pb2_grpc" >> ./gen/python/__init__.py
+	@find ./gen/python/proto -mindepth 1 -maxdepth 1 -type d | while read -r dir; do \
+    foldername=$$(basename $$dir); \
+    echo "from .proto.$$foldername import $${foldername}_pb2" >> ./gen/python/__init__.py; \
+    echo "from .proto.$$foldername import $${foldername}_pb2_grpc" >> ./gen/python/__init__.py; \
+	done
 	@echo "Stubs generation completed."

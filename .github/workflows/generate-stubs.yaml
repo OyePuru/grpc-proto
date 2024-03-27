@@ -55,13 +55,10 @@ jobs:
         pip install mypy-protobuf
       
     - name: Generate stubs Go
-      run: make generate-stubs-go || exit 1
-
-    - name: Generate stubs TypeScript
-      run: make generate-stubs-ts || exit 1
-
-    - name: Generate stubs Python
-      run: make generate-stubs-python || exit 1
+      run: |
+        make generate-stubs-go || exit 1
+        make generate-stubs-ts || exit 1
+        make generate-stubs-python || exit 1
  
     - name: Push Golang Generations
       uses: cpina/github-action-push-to-another-repository@target-branch

@@ -9,7 +9,7 @@ generate-stubs-go:
 		dir=$$(dirname $$file); \
 		yaml_file=$$dir/service.yaml; \
 		mkdir -p gen/go/proto; \
-		echo "Processing $$file"; \
+		echo "Processing $$file $$yaml_file"; \
 		protoc -I . \
 		--go_out=./gen/go \
 		--go_opt=paths=source_relative \
@@ -19,6 +19,7 @@ generate-stubs-go:
 		--grpc-gateway_opt=paths=source_relative \
 		--grpc-gateway_opt=grpc_api_configuration=$$yaml_file \
 		$$file; \
+		exit 123
 	done
 	@echo "Stubs generation completed."
 
